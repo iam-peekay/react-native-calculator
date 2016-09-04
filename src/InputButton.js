@@ -8,11 +8,11 @@ import Style from './Style';
 
 export default class InputButton extends Component {
   render() {
-    const { onPress, value } = this.props;
+    const { onPress, value, highlight } = this.props;
 
     return (
       <TouchableHighlight 
-        style={ Style.inputButton }
+        style={ [Style.inputButton, highlight ? Style.inputButtonHighlighted : null] }
         underlayColor="#193441"
         onPress={ onPress }
       >

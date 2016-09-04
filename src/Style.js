@@ -36,6 +36,9 @@ const Style = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
+  inputButtonHighlighted: {
+    backgroundColor: '#193441',
+  },
 });
 
 export default Style;
