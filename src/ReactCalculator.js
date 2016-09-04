@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  View,
   AppRegistry,
   Text,
 } from 'react-native';
@@ -7,7 +8,10 @@ import {
 class ReactCalculator extends Component {
   render() {
     return (
-      <Text> Hello, World! </Text>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 2, backgroundColor: '#193441' }}></View>
+        <View style={{ flex: 8, backgroundColor: '#3E606F' }}></View>
+      </View>
     )
   }
 }
