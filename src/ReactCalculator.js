@@ -85,7 +85,15 @@ class ReactCalculator extends Component {
   _handleNumberInput(number) {
     const currentInputToString = this.state.inputValue.toString();
     let inputValue;
-    if (currentInputToString.charAt(currentInputValue.length - 1) === '.') {
+
+    console.log(number, this.state, "ETF")
+    if (currentInputToString === 'Infinity') {
+      this._resetInputState.bind(this);
+      this.setState({ inputValue: number });
+      return;
+    }
+    
+    if (currentInputToString.charAt(currentInputToString.length - 1) === '.') {
       inputValue = this.state.inputValue + number;
     } else {
       inputValue = (this.state.inputValue * 10) + number;
@@ -108,7 +116,7 @@ class ReactCalculator extends Component {
         break;
       case '.':
         const currentInputToString = this.state.inputValue.toString();
-        if (currentInputToString.charAt(currentInputValue.length - 1) !== '.') {
+        if (currentInputToString.charAt(currentInputToString.length - 1) !== '.') {
           this.setState({ inputValue: this.state.inputValue + '.' });
         }
       case '=':
@@ -123,6 +131,14 @@ class ReactCalculator extends Component {
         });
         break;
     }
+  }
+
+  _resetInputState() {
+    this.setState({
+      previousInputValue: 0,
+      inputValue: 0,
+      selectedSymbol: null,
+    });
   }
 }
 
