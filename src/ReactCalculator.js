@@ -83,7 +83,13 @@ class ReactCalculator extends Component {
   }
 
   _handleNumberInput(number) {
-    let inputValue = (this.state.inputValue * 10) + number;
+    const currentInputToString = this.state.inputValue.toString();
+    let inputValue;
+    if (currentInputToString.charAt(currentInputValue.length - 1) === '.') {
+      inputValue = this.state.inputValue + number;
+    } else {
+      inputValue = (this.state.inputValue * 10) + number;
+    }
 
     this.setState({ inputValue: inputValue });
   }
@@ -100,6 +106,11 @@ class ReactCalculator extends Component {
           inputValue: 0,
         });
         break;
+      case '.':
+        const currentInputToString = this.state.inputValue.toString();
+        if (currentInputToString.charAt(currentInputValue.length - 1) !== '.') {
+          this.setState({ inputValue: this.state.inputValue + '.' });
+        }
       case '=':
         let { selectedSymbol, inputValue, previousInputValue } = this.state;
         
