@@ -6,12 +6,10 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react": "15.3.1",
-    "react-native": "0.32.0"
-  },
-  "devDependencies": {
     "eslint": "^3.4.0",
     "eslint-plugin-react": "^6.2.0",
-    "eslint-plugin-react-native": "^2.0.0"
+    "eslint-plugin-react-native": "^2.0.0",
+    "react": "15.3.1",
+    "react-native": "0.32.0"
   }
 }

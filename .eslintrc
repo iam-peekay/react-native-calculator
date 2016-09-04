@@ -4,6 +4,7 @@
     "jsx": true,
     "es6": true
   },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
     "react-native/no-unused-styles": 2,
     "react-native/split-platform-components": 2,
@@ -13,5 +14,11 @@
   "plugins": [
     "react",
     "react-native"
-  ]
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "sourceType": "module"
+    }
+  }
 }
