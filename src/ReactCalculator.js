@@ -12,9 +12,10 @@ import InputButton from './InputButton';
 // Define the input buttons that will be displayed in the calculator.
 const inputButtons = [
     [1, 2, 3, '/'],
-    [4, 5, 6, '*'],
+    [4, 5, 6, 'x'],
     [7, 8, 9, '-'],
-    [0, '.', '=', '+']
+    [0, '.', '=', '+'],
+    [, , 'CE', 'C'],
 ];
 
 class ReactCalculator extends Component {
@@ -26,6 +27,8 @@ class ReactCalculator extends Component {
       inputValue: 0,
       selectedSymbol: null,
     }
+
+    this._resetInputState = this._resetInputState.bind(this);
   }
 
   render() {
@@ -74,7 +77,9 @@ class ReactCalculator extends Component {
   }
 
   _onInputButtonPressed(input) {
-    switch (typeof input) {
+    const inputMod = Number(input) ? Number(input) : input;
+
+    switch (typeof inputMod) {
       case 'number':
         return this._handleNumberInput(input);
       case 'string':
@@ -86,9 +91,8 @@ class ReactCalculator extends Component {
     const currentInputToString = this.state.inputValue.toString();
     let inputValue;
 
-    console.log(number, this.state, "ETF")
     if (currentInputToString === 'Infinity') {
-      this._resetInputState.bind(this);
+      this._resetInputState();
       this.setState({ inputValue: number });
       return;
     }
@@ -105,7 +109,7 @@ class ReactCalculator extends Component {
   _handleStringInput(string) {
     switch(string) {
       case '/':
-      case '*':
+      case 'x':
       case '+':
       case '-':
         this.setState({
@@ -114,11 +118,18 @@ class ReactCalculator extends Component {
           inputValue: 0,
         });
         break;
+      case 'C':
+        this.setState({ inputValue: 0 });
+        break;
+      case 'CE':
+        this._resetInputState();
+        break;
       case '.':
         const currentInputToString = this.state.inputValue.toString();
         if (currentInputToString.charAt(currentInputToString.length - 1) !== '.') {
           this.setState({ inputValue: this.state.inputValue + '.' });
         }
+        break;
       case '=':
         let { selectedSymbol, inputValue, previousInputValue } = this.state;
         
@@ -134,11 +145,13 @@ class ReactCalculator extends Component {
   }
 
   _resetInputState() {
+    console.log('GOT HERE', this.state)
     this.setState({
       previousInputValue: 0,
       inputValue: 0,
       selectedSymbol: null,
     });
+    console.log('GOT HERE TWO', this.state)
   }
 }
 
